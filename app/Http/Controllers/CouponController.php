@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Coupon;
 use App\Models\EventList;
+use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Traits\TestTrait;
 
@@ -10,24 +12,38 @@ class CouponController extends Controller
 {
     use TestTrait;
 
+
     public function index(Request  $request)
     {
-        $user = $request->user_id ;
+        $coupon_cost = 5 ;
+        $user = User::find($request->user_id);
+        if(!$user) {
+            return response()->json(false);
+        }
+
         $kolonlar = $request->except(['user_id' , 'price']);
+
+        $coupon_first_price = $this->CouponFirstPrice($kolonlar);
+        dd($coupon_first_price);
+       // return response()->json(json_decode($coupon_first_price));
+
         $system_colon = $this->createSystemCoupon($kolonlar); // Here we use the getTestExample trait
         $play_coupon = $this->createPlayCoupon(json_decode($system_colon));
         $coupon_price = $this->CouponPrice(json_decode($play_coupon));
 
         $kolon = json_encode($kolonlar);
 
+
+
         Coupon::create([
-            'user_id' => $user,
+            'user_id' => $user->id,
             'price' => $coupon_price ,
             'main_coupon' => $kolon ,
             'week_id' => 3 ,
             'system_coupon' => $system_colon ,
             'play_coupon' => $play_coupon,
             'toto_price' => $coupon_price ,
+            'coupon_cost' => $coupon_cost ,
             'date' =>  now()
         ]);
 
@@ -44,6 +60,9 @@ class CouponController extends Controller
         $hafta = EventList::query()->where('week_id',3)->get();
         return view('welcome', compact(['kupon' , 'hafta']));
     }
+    // git özel mesajı
+
+
 
 }
 

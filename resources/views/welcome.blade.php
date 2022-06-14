@@ -82,14 +82,15 @@
     <div class="col-md-11">
         <?php
        // dd($sistem_kupon);
-        foreach ($sistem_kupon as $key => $sistem) {
+     /*   foreach ($sistem_kupon as $key => $sistem) {
             foreach ($sistem as $bey => $sist) {
                 echo $sist."-";
             }
             echo "<hr>";
-        }
+        }*/
 
-        return;
+
+
         ?>
         <div class="row">
             <table class="table-bordered table table-sm">

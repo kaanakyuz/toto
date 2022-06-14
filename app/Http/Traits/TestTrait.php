@@ -86,5 +86,40 @@ trait TestTrait {
 
     }
 
+    public  function  CouponFirstPrice (array $data) {
+        $fiyat = 0.5 ;
+        $toplam_fiyat = 0 ;
+        $kolonlar = [];
+
+        for ($v=0; $v < 15 ; $v++) {
+            $k = $v + 1;
+            $col1 = "r" . $k . "_1";
+            $col2 = "r" . $k . "_2";
+            $col3 = "r" . $k . "_3";
+
+            $kolonlar[] = $data[$v][$col1] . $data[$v][$col2] . $data[$v][$col3];
+
+
+        }
+
+        foreach ($kolonlar as $key => $item) {
+
+
+            if(strlen($kolonlar[$key]==1)) {
+            $fiyat = $fiyat * 2;
+            }
+            if(strlen($kolonlar[$key]==2)) {
+                $fiyat = $fiyat * 3;
+            }
+
+            $toplam_fiyat = $fiyat + $toplam_fiyat;
+        }
+
+
+        return $toplam_fiyat;
+
+
+    }
+
 
 }

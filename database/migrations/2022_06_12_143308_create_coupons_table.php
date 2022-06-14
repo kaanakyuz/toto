@@ -23,6 +23,7 @@ return new class extends Migration
             $table->json('play_coupon');
             $table->float('price');
             $table->float('toto_price');
+            $table->integer('coupon_cost');
             $table->timestamps();
         });
     }

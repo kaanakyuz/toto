@@ -20,9 +20,7 @@ class User extends Authenticatable
     protected $table='users';
     protected $guarded = [];
 
-    public static function create(array $array)
-    {
-    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
