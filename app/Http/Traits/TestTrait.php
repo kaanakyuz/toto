@@ -53,7 +53,7 @@ trait TestTrait {
 
         $kolonlar = [];
 
-        for ($m=0; $m < 16 ; $m++){  //  Oynanacak kuponlar burada...
+        for ($m=0; $m < 16 ; $m++){  //  Oynanacak kuponlar burada... nesine gibi
             foreach ($data as $keys => $kup) {
                 $kolonlar[$m][$keys] = $kup[$m];
             }
@@ -63,6 +63,7 @@ trait TestTrait {
 
     }
     public  function  CouponPrice (array $data) {
+        // nesine oynanacak kupon bedeli
         $fiyat = 0.5 ;
         $toplam_fiyat = 0 ;
 
@@ -87,6 +88,7 @@ trait TestTrait {
     }
 
     public  function  CouponFirstPrice (array $data) {
+         // Gerçekte oynansa tutacak parayı hesaplama
         $fiyat = 0.5 ;
         $toplam_fiyat = 0 ;
         $kolonlar = [];
@@ -102,17 +104,33 @@ trait TestTrait {
 
         }
 
-        foreach ($kolonlar as $key => $item) {
+        return $this->hesapYap($kolonlar);
 
 
-            if(strlen($kolonlar[$key]==1)) {
-            $fiyat = $fiyat * 2;
-            }
-            if(strlen($kolonlar[$key]==2)) {
-                $fiyat = $fiyat * 3;
+    }
+    public function hesapYap(array $data) {
+
+        $fiyat = 0.5 ;
+        $toplam_fiyat = 0 ;
+        $test = [];
+        foreach ($data as $key => $item) {  // arrayı toparladık
+                    $test ['test'][] = $item ;
+        }
+
+        foreach ($test as $key => $items) {
+
+            foreach ($items as $item) {
+                if(strlen($item) ==2 ) {
+                    $fiyat = $fiyat * 2;
+                }
+                if(strlen($item) ==3 ) {
+                    $fiyat = $fiyat * 3;
+                }
             }
 
             $toplam_fiyat = $fiyat + $toplam_fiyat;
+            $fiyat = 0.5;
+
         }
 
 

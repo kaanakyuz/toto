@@ -11,4 +11,6 @@ class EventList extends Model
 
     protected $table='event_lists';
     protected $guarded = [];
+
+
 }

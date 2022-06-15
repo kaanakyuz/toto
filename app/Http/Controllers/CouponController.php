@@ -24,16 +24,10 @@ class CouponController extends Controller
         $kolonlar = $request->except(['user_id' , 'price']);
 
         $coupon_first_price = $this->CouponFirstPrice($kolonlar);
-        dd($coupon_first_price);
-       // return response()->json(json_decode($coupon_first_price));
-
         $system_colon = $this->createSystemCoupon($kolonlar); // Here we use the getTestExample trait
         $play_coupon = $this->createPlayCoupon(json_decode($system_colon));
-        $coupon_price = $this->CouponPrice(json_decode($play_coupon));
-
+        $coupon_price = $this->CouponPrice(json_decode($play_coupon)); // gerçek  harcanacak para
         $kolon = json_encode($kolonlar);
-
-
 
         Coupon::create([
             'user_id' => $user->id,
@@ -42,14 +36,13 @@ class CouponController extends Controller
             'week_id' => 3 ,
             'system_coupon' => $system_colon ,
             'play_coupon' => $play_coupon,
-            'toto_price' => $coupon_price ,
+            'toto_price' => $coupon_first_price ,
             'coupon_cost' => $coupon_cost ,
             'date' =>  now()
         ]);
 
       return response()->json($kolonlar);
-
-      }
+    }
     public function getCoupon (Request $request): \Illuminate\Http\JsonResponse
     {
         $kupon = Coupon::firstWhere('id', $request->id);
