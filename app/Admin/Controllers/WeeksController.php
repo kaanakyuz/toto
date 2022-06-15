@@ -24,6 +24,7 @@ class WeeksController extends AdminController
      */
     protected function grid()
     {
+
         $grid = new Grid(new Week());
 
         $grid->column('id', __('Id'));

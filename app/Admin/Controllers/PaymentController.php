@@ -10,6 +10,7 @@ use Encore\Admin\Show;
 
 class PaymentController extends AdminController
 {
+
     /**
      * Title for current resource.
      *

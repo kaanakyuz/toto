@@ -27,6 +27,7 @@ class EventListsController extends AdminController
     {
         $grid = new Grid(new EventList());
 
+
         $grid->column('id', __('Id'));
         $grid->column('week_id', __('Week id'));
         $grid->column('event_name', __('Event name'));

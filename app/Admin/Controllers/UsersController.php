@@ -24,6 +24,7 @@ class UsersController extends AdminController
      */
     protected function grid()
     {
+
         $grid = new Grid(new User());
 
         $grid->column('id', __('Id'));

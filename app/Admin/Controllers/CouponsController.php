@@ -24,6 +24,7 @@ class CouponsController extends AdminController
      */
     protected function grid()
     {
+
         $grid = new Grid(new Coupon());
 
         $grid->column('id', __('Id'));
